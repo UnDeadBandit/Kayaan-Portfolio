@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayaan Billimoria | Cyber Security Student</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00f5ff;
+            --primary-dark: #00d4dd;
+            --secondary: #a855f7;
+            --bg: #0a0e1a;
+            --bg-secondary: #151b2e;
+            --bg-tertiary: #1e2740;
+            --text: #ffffff;
+            --text-secondary: #94a3b8;
+            --accent: #f472b6;
+            --success: #10b981;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 245, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(244, 114, 182, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 26, 0.8);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0, 245, 255, 0.1);
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 500;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 8rem 2rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            font-weight: 800;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-content .tagline {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            animation: fadeInUp 0.8s ease 0.6s backwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 245, 255, 0.4);
+        }
+
+        .cta-button-secondary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .cta-button-secondary:hover {
+            background: rgba(0, 245, 255, 0.1);
+        }
+
+        .hero-image {
+            position: relative;
+            animation: fadeIn 1s ease 0.3s backwards;
+        }
+
+        .image-wrapper {
+            position: relative;
+            width: 450px;
+            height: 450px;
+            margin: 0 auto;
+        }
+
+        .image-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: -20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.6;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .profile-img {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--bg);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .floating-card {
+            position: absolute;
+            background: rgba(21, 27, 46, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 245, 255, 0.2);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .floating-card-1 {
+            top: 10%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .floating-card-2 {
+            bottom: 15%;
+            right: -10%;
+            animation-delay: 1s;
+        }
+
+        .floating-card-3 {
+            top: 50%;
+            right: -15%;
+            animation-delay: 2s;
+        }
+
+        .floating-card strong {
+            color: var(--primary);
+        }
+
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .about-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .about-card {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 245, 255, 0.1);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 245, 255, 0.05), rgba(168, 85, 247, 0.05));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .about-card:hover::before {
+            opacity: 1;
+        }
+
+        .about-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 60px rgba(0, 245, 255, 0.3);
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .achievement-card {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .achievement-card::before {
+            content: '🏆';
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            opacity: 0.3;
+        }
+
+        .achievement-card:hover {
+            transform: translateX(10px);
+            border-left-color: var(--secondary);
+            box-shadow: 0 10px 40px rgba(168, 85, 247, 0.3);
+        }
+
+        .achievement-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .achievement-card .date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* <!-- NEW CODE START: Carousel CSS --> */
+        .carousel-container {
+            max-width: 900px;
+            margin: 4rem auto 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 245, 255, 0.1);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .carousel-slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .carousel-img {
+            width: 100%;
+            display: block;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+        }
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(10, 14, 26, 0.9), transparent);
+            color: var(--text);
+            padding: 2rem 1.5rem 1.5rem;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(10, 14, 26, 0.7);
+            color: var(--primary);
+            border: 1px solid rgba(0, 245, 255, 0.2);
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-btn:hover {
+            background-color: var(--primary);
+            color: var(--bg);
+        }
+
+        .carousel-btn.prev {
+            left: 15px;
+        }
+
+        .carousel-btn.next {
+            right: 15px;
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.4);
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .carousel-dot.active {
+            background-color: var(--primary);
+        }
+        /* <!-- NEW CODE END: Carousel CSS --> */
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 245, 255, 0.1);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 245, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .skill-card:hover::before {
+            opacity: 1;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 0 25px 50px rgba(0, 245, 255, 0.3);
+        }
+
+        .skill-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-icon {
+            font-size: 1.8rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-top: 1.5rem;
+        }
+
+        .tag {
+            background: rgba(0, 245, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--primary);
+            border: 1px solid rgba(0, 245, 255, 0.2);
+            transition: all 0.3s;
+        }
+
+        .tag:hover {
+            background: rgba(0, 245, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 245, 255, 0.1);
+            transition: all 0.4s;
+            position: relative;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+            border-color: var(--primary);
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .project-link {
+            padding: 0.7rem 1.5rem;
+            background: rgba(0, 245, 255, 0.1);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 1px solid var(--primary);
+        }
+
+        .project-link:hover {
+            background: var(--primary);
+            color: var(--bg);
+            transform: scale(1.05);
+        }
+
+        .blog-grid {
+            display: grid;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .blog-card {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 245, 255, 0.1);
+            transition: all 0.4s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+            transform: scaleY(0);
+            transition: transform 0.4s;
+        }
+
+        .blog-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .blog-card:hover {
+            border-color: var(--primary);
+            transform: translateX(20px);
+            box-shadow: 0 15px 50px rgba(0, 245, 255, 0.2);
+        }
+
+        .blog-meta {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .blog-meta span {
+            background: rgba(0, 245, 255, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+        }
+
+        .contact-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-content p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+
+        .contact-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            border-radius: 15px;
+            border: 1px solid rgba(0, 245, 255, 0.1);
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.4s;
+        }
+
+        .contact-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 245, 255, 0.3);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem;
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            border-top: 1px solid rgba(0, 245, 255, 0.1);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .image-wrapper {
+                width: 350px;
+                height: 350px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .about-section {
+                grid-template-columns: 1fr;
+            }
+
+            .floating-card {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem !important;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            section {
+                padding: 5rem 1rem 3rem;
+            }
+
+            .image-wrapper {
+                width: 280px;
+                height: 280px;
+            }
+
+            .skills-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">Kayaan Billimoria</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Kayaan Billimoria</h1>
+            <h3>Defending Digital Frontiers</h3>
+            <div class="tagline">Cyber Security Student</div>
+            <p>Third-year Cyber Security enthusiast specializing in penetration testing, secure coding, and threat analysis. Passionate about building secure systems and staying ahead of emerging threats in the ever-evolving landscape of digital security.</p>
+            <div class="hero-buttons">
+                <a href="#projects" class="cta-button">View My Work</a>
+                <a href="#contact" class="cta-button cta-button-secondary">Get In Touch</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="image-wrapper">
+                <img src="images/kayaan.png" alt="Profile photo of Kayaan Billimoria" class="profile-img">
+                <div class="floating-card floating-card-2">
+                    <strong>5+</strong> Projects
+                </div>
+                <div class="floating-card floating-card-3">
+                    <strong>CTF</strong> Player
+                </div>
+                <div class="floating-card floating-card-4">
+                    <strong>Multiple</strong> Hackathon Finalist
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-section">
+            <div class="about-card">
+                <h3>Education</h3>
+                <p>Currently pursuing my Bachelor's degree in Cyber Security (Third Year) at Shah & Anchor Kutchhi Engineering College.</p>
+                <p style="margin-top: 1rem;">Current CGPA: 9.72</p>
+                <p style="margin-top: 1rem;">Expected Completion: 2027</p>
+            </div>
+            <div class="about-card">
+                <h3>My Approach</h3>
+                <p> My journey into Cyber Security began with a fascination for understanding how systems work and how to protect them from malicious actors.</p>
+                <p style="margin-top: 1rem;">My approach combines offensive security techniques with defensive strategies, always thinking like an attacker to better protect systems. I'm committed to ethical practices and believe in sharing knowledge with the security community.</p>
+            </div>
+        </div>
+
+        <h3 style="font-size: 2rem; margin-top: 4rem; margin-bottom: 2rem;">🏆 Achievements & Certifications</h3>
+        <div class="achievements-grid">
+            <div class="achievement-card">
+                <h4>Finalist in Delhi Police Cyber Challenge Hackathon</h4>
+                <div class="date">March 2025</div>
+                <p>Led a team of 3, selected in top 20 Finalist out of over 750 submissions from all over India.</p>
+            </div>
+            <div class="achievement-card">
+                <h4>Top 4 at CCTV Hackathon organized by BPR&D & NCRB.</h4>
+                <div class="date">January 2025</div>
+                <p>Led a 3 man team and won a prize of Rs 10,000/-</p>
+            </div>
+            <div class="achievement-card">
+                <h4>Top 30 in Pentathon 2024 CTF Challenge</h4>
+                <div class="date">2024-2025</div>
+                <p>Solved 70% of the flags in my team to secure a top 30 rank across India.</p>
+            </div>
+            <div class="achievement-card">
+                <h4>Intern at CyberPeace Foundation</h4>
+                <div class="date">Ongoing</div>
+                <p>Working on multiple Cyber Security projects deployed for the Territorial Army of India.</p>
+            </div>
+            <div class="achievement-card">
+                <h4>Technical Head of Cyber Security Department.    </h4>
+                <div class="date">Ongoing</div>
+                <p>Leading a team of over 20 members conducting events and managing Department level Cyber Security Projects.</p>
+            </div>
+            <div class="achievement-card">
+                <h4>Co-ordinator In-Charge of CyberPeace Center of Excellence.</h4>
+                <div class="date">Ongoing</div>
+                <p>Managing CoE members to develop specialized Cyber Security Solutions, Patents and publishing Research Papers.</p>
+            </div>
+        </div>
+
+        <!-- NEW CODE START: Carousel HTML -->
+        <h3 style="font-size: 2rem; text-align: center; margin-top: 6rem; margin-bottom: 2rem;">Gallery</h3>
+        <div class="carousel-container">
+            <div class="carousel-slides">
+                <!-- Slide 1: REPLACE THE SRC and ALT TEXT -->
+                <div class="carousel-slide">
+                    <img src="images/carousel/c1.jpg" alt="BPRD NCRB Hackathon" class="carousel-img">
+                    <div class="carousel-caption">Finalists at the BPR&D & NCRB CCTV Hackathon</div>
+                </div>
+                <!-- Slide 2: REPLACE THE SRC and ALT TEXT -->
+                <div class="carousel-slide">
+                    <img src="images/carousel/c2.jpg" alt="CCTV Hackathon Team" class="carousel-img">
+                    <div class="carousel-caption">Our team after winning at the BPR&D & NCRB CCTV Hackathon</div>
+                </div>
+                <!-- Slide 3: REPLACE THE SRC and ALT TEXT -->
+                <div class="carousel-slide">
+                    <img src="images/carousel/c3.jpg" alt="Delhi Police Hackathon" class="carousel-img">
+                    <div class="carousel-caption">Presenting our solution at the Delhi Police Cyber Challenge Hackathon</div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/carousel/c4.jpg" alt="Delhi Police Hackathon" class="carousel-img">
+                    <div class="carousel-caption">Honored for being the Finalists at the Delhi Police Cyber Challenge Hackathon</div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/carousel/c5.jpg" alt="TATTVA 2025" class="carousel-img">
+                    <div class="carousel-caption">Presenting project at Tattva 2025 Student Conclave.</div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/carousel/c6.jpg" alt="AICTE ATAL" class="carousel-img">
+                    <div class="carousel-caption">Co-delievering session at AICTE ATAL Program.</div>
+                </div>
+            </div>
+            <button class="carousel-btn prev">&#10094;</button>
+            <button class="carousel-btn next">&#10095;</button>
+            <div class="carousel-dots"></div>
+        </div>
+        <!-- NEW CODE END: Carousel HTML -->
+
+    </section>
+
+    <section id="skills">
+        <h2>Technical Arsenal</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3><span class="skill-icon">🎯</span>Penetration Testing</h3>
+                <p>Comprehensive security assessments and ethical hacking techniques to identify system vulnerabilities.</p>
+                <div class="skill-tags">
+                    <span class="tag">Metasploit</span>
+                    <span class="tag">Burp Suite</span>
+                    <span class="tag">Nmap</span>
+                    <span class="tag">Wireshark</span>
+                    <span class="tag">SQLMap</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h3><span class="skill-icon">💻</span>Programming</h3>
+                <p>Strong foundation in multiple languages for security automation and exploit development.</p>
+                <div class="skill-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">C/C++</span>
+                    <span class="tag">Bash</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">Go</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h3><span class="skill-icon">🔐</span>Cryptography</h3>
+                <p>Deep understanding of encryption algorithms and secure communication protocols.</p>
+                <div class="skill-tags">
+                    <span class="tag">AES/RSA</span>
+                    <span class="tag">TLS/SSL</span>
+                    <span class="tag">PKI</span>
+                    <span class="tag">Hash Functions</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h3><span class="skill-icon">🌐</span>Web Security</h3>
+                <p>Expertise in identifying and exploiting web application vulnerabilities.</p>
+                <div class="skill-tags">
+                    <span class="tag">OWASP Top 10</span>
+                    <span class="tag">XSS</span>
+                    <span class="tag">CSRF</span>
+                    <span class="tag">SQLi</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h3><span class="skill-icon">🛡️</span>Network Security</h3>
+                <p>Proficient in network protocols, firewall configuration, and intrusion detection systems.</p>
+                <div class="skill-tags">
+                    <span class="tag">TCP/IP</span>
+                    <span class="tag">VPN</span>
+                    <span class="tag">Snort</span>
+                    <span class="tag">pfSense</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h3><span class="skill-icon">🔍</span>Malware Analysis</h3>
+                <p>Reverse engineering and behavioral analysis of malicious software.</p>
+                <div class="skill-tags">
+                    <span class="tag">IDA Pro</span>
+                    <span class="tag">Ghidra</span>
+                    <span class="tag">x64dbg</span>
+                    <span class="tag">YARA</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>LinuxAdmin</h3>
+                    <p>Developed a client-server platform for real-time Linux system administration and security for the Territorial Army of India. </p>
+                    <div class="skill-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Bash</span>
+                        <span class="tag">Power Shell</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">GitHub</a>
+                        <a href="#" class="project-link">Live Demo</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>HoneyTrack</h3>
+                    <p>Designed and deployed a high-interaction honeypot framework to detect, log, and analyze malicious activity on exposed SSH and Telnet services. </p>
+                    <div class="skill-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Cowrie</span>
+                        <span class="tag">ELK Stack</span>
+                        <span class="tag">File Beat</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">GitHub</a>
+                        <a href="#" class="project-link">Documentation</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>VerifyIt!</h3>
+                    <p>Misinformation & Fake News Detection and Reporting Platform built for the Delhi Police Cyber Challenge Hackathon.</p>
+                    <div class="skill-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">React</span>
+                        <span class="tag">Transformers</span>
+                        <span class="tag">Ollama</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">GitHub</a>
+                        <a href="#" class="project-link">Try It</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="blog">
+        <h2>Latest Articles</h2>
+        <div class="blog-grid" id="blogContainer">
+            <!-- Blog posts will be loaded here -->
+        </div>
+    </section>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <section id="contact">
+    <h2>Let's Connect</h2>
+    <div class="contact-content">
+        <p>I'm always interested in discussing  Cyber Security projects, collaboration opportunities, or just connecting with fellow security enthusiasts. Feel free to reach out!</p>
+        <div class="contact-links">
+            <a href="mailto:kayaan.17710@sakec.ac.in" class="contact-item">
+                <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+                <div>
+                    <strong>Email</strong><br>
+                    <span style="color: var(--text-secondary);">kayaan.17710@sakec.ac.in</span>
+                </div>
+            </a>
+            <a href="https://github.com/UnDeadBandit" class="contact-item" target="_blank">
+                <span class="contact-icon"><i class="fab fa-github"></i></span>
+                <div>
+                    <strong>GitHub</strong><br>
+                    <span style="color: var(--text-secondary);">@UnDeadBandit</span>
+                </div>
+            </a>
+            <a href="https://www.linkedin.com/in/kayaan-billimoria/" class="contact-item" target="_blank">
+                <span class="contact-icon"><i class="fab fa-linkedin"></i></span>
+                <div>
+                    <strong>LinkedIn</strong><br>
+                    <span style="color: var(--text-secondary);">Kayaan Billimoria</span>
+                </div>
+            </a>
+            <a href="https://tryhackme.com/p/UnDeadBandit" class="contact-item" target="_blank">
+                <span class="contact-icon"><i class="fas fa-shield-alt"></i></span>
+                <div>
+                    <strong>TryHackMe</strong><br>
+                    <span style="color: var(--text-secondary);">UnDeadBandit</span>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+    <footer>
+        <p>&copy; 2025 Kayaan Billimoria. All rights reserved. Built with passion for Cyber Security.</p>
+    </footer>
+
+    <script>
+        // Blog posts data - Edit this to add your articles
+        const blogPosts = [
+            {
+                title: "CCIDF: A Practical Perspective from TryHackMe Cybersecurity 101",
+                date: "October 16, 2025",
+                category: "CCIDF",
+                excerpt: "Stage 1: Activity 1 - Article Writing",
+                link: "https://github.com/UnDeadBandit/Kayaan-SLA-Articles/blob/main/CCIDF-article.md"
+            },
+            {
+                title: "Building a Home Security Operations Center (SOC)",
+                date: "February 28, 2025",
+                category: "Blue Team",
+                excerpt: "A complete guide to setting up your own SOC lab using open-source tools like ELK Stack, Wazuh, and TheHive for learning and practicing security monitoring.",
+                link: "#"
+            },
+            {
+                title: "The Rise of AI in Cybersecurity: A Double-Edged Sword",
+                date: "January 20, 2025",
+                category: "AI Security",
+                excerpt: "Exploring how artificial intelligence is transforming both offensive and defensive security operations, and what it means for the future of cybersecurity.",
+                link: "#"
+            },
+            {
+                title: "Reverse Engineering Malware: A Beginner's Guide",
+                date: "January 5, 2025",
+                category: "Malware Analysis",
+                excerpt: "Step-by-step tutorial on setting up a malware analysis environment and performing static and dynamic analysis on suspicious executables.",
+                link: "#"
+            }
+        ];
+
+        // Load blog posts
+        function loadBlogPosts() {
+            const container = document.getElementById('blogContainer');
+            if (!container) return;
+            blogPosts.forEach(post => {
+                const card = document.createElement('div');
+                card.className = 'blog-card';
+                card.onclick = () => window.location.href = post.link;
+                card.innerHTML = `
+                    <div class="blog-meta">
+                        <span>${post.category}</span>
+                        <span>${post.date}</span>
+                    </div>
+                    <h3>${post.title}</h3>
+                    <p>${post.excerpt}</p>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // <!-- NEW CODE START: Carousel JavaScript -->
+        function setupCarousel() {
+            const slidesContainer = document.querySelector('.carousel-slides');
+            if (!slidesContainer) return; // Exit if carousel isn't on the page
+
+            const slides = document.querySelectorAll('.carousel-slide');
+            const prevBtn = document.querySelector('.carousel-btn.prev');
+            const nextBtn = document.querySelector('.carousel-btn.next');
+            const dotsContainer = document.querySelector('.carousel-dots');
+            
+            let currentIndex = 0;
+            let slideInterval;
+
+            // Create dot indicators
+            slides.forEach((_, i) => {
+                const dot = document.createElement('button');
+                dot.classList.add('carousel-dot');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => {
+                    goToSlide(i);
+                });
+                dotsContainer.appendChild(dot);
+            });
+            const dots = document.querySelectorAll('.carousel-dot');
+
+            function updateDots(index) {
+                dots.forEach(dot => dot.classList.remove('active'));
+                dots[index].classList.add('active');
+            }
+
+            function goToSlide(index) {
+                slidesContainer.style.transform = `translateX(-${index * 100}%)`;
+                currentIndex = index;
+                updateDots(currentIndex);
+                resetInterval();
+            }
+
+            function nextSlide() {
+                let nextIndex = (currentIndex + 1) % slides.length;
+                goToSlide(nextIndex);
+            }
+
+            function prevSlide() {
+                let prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+                goToSlide(prevIndex);
+            }
+
+            function startInterval() {
+                slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+            }
+            
+            function resetInterval() {
+                clearInterval(slideInterval);
+                startInterval();
+            }
+
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+            
+            startInterval(); // Start auto-play
+        }
+        // <!-- NEW CODE END: Carousel JavaScript -->
+
+
+        // Load content on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            loadBlogPosts();
+            setupCarousel(); // Initialize the carousel
+        });
+
+        // Add scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        window.addEventListener('load', () => {
+            const cards = document.querySelectorAll('.skill-card, .project-card, .blog-card, .achievement-card, .about-card, .carousel-container');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = `all 0.6s ease ${index * 0.1}s`;
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
