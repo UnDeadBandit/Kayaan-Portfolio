@@ -1,4 +1,4 @@
-# Applications of Graph Theory in Computer Networks and Data Science
+# Theory of Computation & Compiler Design: Applications of Graph Theory in Computer Networks and Data Science
 
 ## Introduction
 
