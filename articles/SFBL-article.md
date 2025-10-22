@@ -1,4 +1,4 @@
-# The Power of Emotional Intelligence for a Balanced Life
+# Skills for a Balanced Life: The Power of Emotional Intelligence for a Balanced Life
 
 > **“It is not the smartest people who succeed, but those who manage their emotions best.” — Daniel Goleman**
 
