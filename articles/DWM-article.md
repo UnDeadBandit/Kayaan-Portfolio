@@ -198,7 +198,7 @@ As enterprises move toward cloud and big data platforms, ETL continues to evolve
 
 *Author: Kayaan Billimoria*
 
-*Course: Skills from a Balanced Life*
+*Course: Skills for a Balanced Life*
 
 *Stage 1 – Concept Exploration through Article Writing*
 
