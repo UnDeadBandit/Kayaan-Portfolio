@@ -1,4 +1,4 @@
-# SEPM: Object-Oriented Analysis and Design (OOAD)
+# Software Engineering & Project Management: Object-Oriented Analysis and Design (OOAD)
 
 Object-Oriented Analysis and Design (OOAD) is a core methodology in modern software engineering that helps developers build robust, maintainable, and scalable software systems. By modeling software as interacting **objects** rather than procedural code, OOAD bridges the gap between real-world business requirements and their software implementation.
 
