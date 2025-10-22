@@ -1,4 +1,4 @@
-# The ETL Process in Data Warehousing: Architecture, Components, and Implementation
+# Data Warehousing & Mining: The ETL Process in Data Warehousing: Architecture, Components, and Implementation
 
 ## Introduction
 
