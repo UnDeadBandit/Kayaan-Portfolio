@@ -81,12 +81,13 @@ The following diagram illustrates the overall ETL pipeline and data flow from so
 
 ```mermaid
 flowchart LR
-    A[Source Systems<br>(Databases, APIs, Flat Files)] --> B[Extraction]
+    A[Source Systems (Databases, APIs, Files)] --> B[Extraction]
     B --> C[Staging Area]
-    C --> D[Transformation<br>(Cleaning, Integration, Aggregation, Validation)]
+    C --> D[Transformation (Cleaning, Integration, Aggregation)]
     D --> E[Loading]
-    E --> F[Data Warehouse<br>(Star/Snowflake Schema)]
-    F --> G[OLAP Tools<br>(Reports, Dashboards, Data Mining)]
+    E --> F[Data Warehouse (Star/Snowflake Schema)]
+    F --> G[OLAP Tools (Reports, Dashboards, Data Mining)]
+
 ````
 
 The flowchart represents how raw operational data moves through different ETL phases to become structured, high-quality information in the warehouse.
