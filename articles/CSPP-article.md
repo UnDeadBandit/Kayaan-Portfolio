@@ -106,9 +106,6 @@ flowchart TD
     G --> H
     H --> I[Continuous Monitoring & Feedback Loop]
 ````
-
-> You can export this diagram as PNG from [draw.io](https://app.diagrams.net/) and include it in your GitHub repo or PPT presentation.
-
 ---
 
 ## Conclusion
