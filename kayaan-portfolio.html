@@ -460,6 +460,173 @@
             background-color: var(--primary);
         }
         /* <!-- NEW CODE END: Carousel CSS --> */
+        /* NEW CODE START: YouTube Carousel CSS */
+        .youtube-carousel-container {
+            max-width: 900px; /* Adjust as needed */
+            margin: 4rem auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 245, 255, 0.1);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .youtube-slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .youtube-slide {
+            min-width: 100%;
+            position: relative;
+            padding: 1rem; /* Padding around the card within the slide */
+            box-sizing: border-box; /* Include padding in width calculation */
+        }
+
+        /* Mimics GlassCard */
+        .video-slide-card {
+            background: linear-gradient(135deg, rgba(21, 27, 46, 0.9), rgba(30, 39, 64, 0.9));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 245, 255, 0.2);
+            border-radius: 20px; /* Match existing cards */
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Stronger shadow for the card */
+            transition: all 0.3s ease;
+        }
+
+        .video-slide-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 245, 255, 0.3);
+        }
+
+        .player-wrapper {
+            position: relative;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7); /* Adjusted for theme */
+            background-color: #000; /* Fallback for video loading */
+        }
+
+        .player-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0; /* Remove default iframe border */
+        }
+
+        .video-info {
+            text-align: center;
+            margin-top: 2rem;
+            max-width: 90%;
+        }
+
+        .video-info h3 {
+            color: var(--primary); /* Using primary color for consistency */
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .video-info p {
+            color: var(--text-secondary); /* Using text-secondary for description */
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .youtube-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(10, 14, 26, 0.7); /* Darker background with transparency */
+            color: var(--primary);
+            border: 1px solid rgba(0, 245, 255, 0.2);
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            opacity: 0.7; /* Initial opacity */
+        }
+
+        .youtube-btn:hover {
+            background-color: var(--primary);
+            color: var(--bg);
+            opacity: 1; /* Full opacity on hover */
+            transform: translateY(-50%) scale(1.1); /* Slight scale for effect */
+        }
+
+        .youtube-btn.prev {
+            left: 15px;
+        }
+
+        .youtube-btn.next {
+            right: 15px;
+        }
+
+        .youtube-dots {
+            position: absolute;
+            bottom: 15px; /* Adjust if needed */
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .youtube-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.4);
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .youtube-dot.active {
+            background-color: var(--primary);
+            transform: scale(1.2); /* Make active dot slightly larger */
+            box-shadow: 0 0 8px rgba(0, 245, 255, 0.5);
+        }
+
+        /* Media query for smaller screens */
+        @media (max-width: 768px) {
+            .youtube-carousel-container {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+            .video-slide-card {
+                padding: 1rem;
+            }
+            .video-info h3 {
+                font-size: 1.2rem;
+            }
+            .video-info p {
+                font-size: 0.9rem;
+            }
+            .youtube-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 1.2rem;
+            }
+            .youtube-btn.prev { left: 5px; }
+            .youtube-btn.next { right: 5px; }
+            .youtube-dots { bottom: 5px; }
+        }
+        /* NEW CODE END: YouTube Carousel CSS */
 
         .skills-grid {
             display: grid;
@@ -805,18 +972,19 @@
 </head>
 <body>
     <nav>
-        <div class="container">
-            <div class="logo">Kayaan Billimoria</div>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#blog">Blog</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+    <div class="container">
+        <div class="logo">Kayaan Billimoria</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#videos">Videos</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
 
     <section id="home" class="hero">
         <div class="hero-content">
@@ -1064,6 +1232,121 @@
         </div>
     </section>
 
+    <!-- NEW CODE START: Latest Videos Section -->
+    <section id="videos">
+        <h2>Latest Videos</h2>
+        <div class="youtube-carousel-container">
+            <div class="youtube-slides">
+                <!-- Video 1 -->
+                <div class="youtube-slide">
+                    <div class="video-slide-card">
+                        <div class="player-wrapper">
+                            <iframe src="https://www.youtube.com/embed/8ASgh1alCbM" 
+                                title="CCIDF: Insights from TryHackMe Cybersecurity 101 Path | Kayaan Billimoria" 
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen
+                                loading="lazy"></iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3>CCIDF: Insights from TryHackMe Cybersecurity 101 Path</h3>
+                            <p>Stage 2: Activity 2 - Video Making.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Video 2 -->
+                <div class="youtube-slide">
+                    <div class="video-slide-card">
+                        <div class="player-wrapper">
+                            <iframe src="https://www.youtube.com/embed/MLnCshb4aKU" 
+                                title="TC&CD: Applications of Graph Theory in Computer Networks and Data Science | Kayaan Billimoria" 
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen
+                                loading="lazy"></iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3>TC&CD: Applications of Graph Theory in Computer Networks and Data Science</h3>
+                            <p>Stage 2: Activity 2 - Video Making.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Video 3 -->
+                 <div class="youtube-slide">
+                    <div class="video-slide-card">
+                        <div class="player-wrapper">
+                            <iframe src="https://www.youtube.com/embed/MU7ufFAaVJQ" 
+                                title="SFBL:  | Kayaan Billimoria" 
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen
+                                loading="lazy"></iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3>SFBL: </h3>
+                            <p>Stage 2: Activity 2 - Video Making.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Video 4 -->
+                <div class="youtube-slide">
+                    <div class="video-slide-card">
+                        <div class="player-wrapper">
+                            <iframe src="https://www.youtube.com/embed/qoGO6YRQV_I" 
+                                title="DWM: The ETL Process in Data Warehousing | Kayaan Billimoria" 
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen
+                                loading="lazy"></iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3>DWM: The ETL Process in Data Warehousing</h3>
+                            <p>Stage 2: Activity 2 - Video Making.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Video 5 -->
+                <div class="youtube-slide">
+                    <div class="video-slide-card">
+                        <div class="player-wrapper">
+                            <iframe src="https://www.youtube.com/embed/zWI6TBOPI7o" 
+                                title="SEPM: Object-Oriented Analysis and Design (OOAD) | Kayaan Billimoria" 
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen
+                                loading="lazy"></iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3>SEPM: Object-Oriented Analysis and Design (OOAD)</h3>
+                            <p>Stage 2: Activity 2 - Video Making.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Video 6 -->
+                <div class="youtube-slide">
+                    <div class="video-slide-card">
+                        <div class="player-wrapper">
+                            <iframe src="https://www.youtube.com/embed/xekt4EFYO0o" 
+                                title="CSPP: Applications of AI in Cyber Security | Kayaan Billimoria" 
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen
+                                loading="lazy"></iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3>CSPP: Applications of AI in Cyber Security</h3>
+                            <p>Stage 2: Activity 2 - Video Making.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="youtube-btn prev">&#10094;</button>
+            <button class="youtube-btn next">&#10095;</button>
+            <div class="youtube-dots"></div>
+        </div>
+    </section>
+    <!-- NEW CODE END: Latest Videos Section -->
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     
     <section id="contact">
@@ -1247,12 +1530,85 @@
             startInterval(); // Start auto-play
         }
         // <!-- NEW CODE END: Carousel JavaScript -->
+        // NEW CODE START: YouTube Carousel JavaScript (Moved outside DCL listener)
+            function setupYouTubeCarousel() {
+                const slidesContainer = document.querySelector('.youtube-slides');
+                if (!slidesContainer) return;
+
+                const slides = document.querySelectorAll('.youtube-slide');
+                const prevBtn = document.querySelector('.youtube-btn.prev');
+                const nextBtn = document.querySelector('.youtube-btn.next');
+                const dotsContainer = document.querySelector('.youtube-dots');
+                
+                let currentIndex = 0;
+                let slideInterval;
+
+                slides.forEach((_, i) => {
+                    const dot = document.createElement('button');
+                    dot.classList.add('youtube-dot');
+                    if (i === 0) dot.classList.add('active');
+                    dot.addEventListener('click', () => {
+                        goToSlide(i);
+                    });
+                    dotsContainer.appendChild(dot);
+                });
+                const dots = document.querySelectorAll('.youtube-dot');
+
+                function updateDots(index) {
+                    dots.forEach(dot => dot.classList.remove('active'));
+                    dots[index].classList.add('active');
+                }
+
+                function goToSlide(index) {
+                    slidesContainer.style.transform = `translateX(-${index * 100}%)`;
+                    currentIndex = index;
+                    updateDots(currentIndex);
+                    resetInterval();
+                    stopAllYouTubeVideos(); // Stop videos when changing slides
+                }
+
+                function nextSlide() {
+                    let nextIndex = (currentIndex + 1) % slides.length;
+                    goToSlide(nextIndex);
+                }
+
+                function prevSlide() {
+                    let prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+                    goToSlide(prevIndex);
+                }
+
+                function startInterval() {
+                    slideInterval = setInterval(nextSlide, 8000); // Change slide every 8 seconds
+                }
+                
+                function resetInterval() {
+                    clearInterval(slideInterval);
+                    startInterval();
+                }
+
+                function stopAllYouTubeVideos() {
+                    document.querySelectorAll('.youtube-slide iframe').forEach(iframe => {
+                        // This is a simple way to stop video playback by resetting its source.
+                        // A more robust solution for play/pause would involve the YouTube IFrame Player API.
+                        let src = iframe.src;
+                        iframe.src = src; 
+                    });
+                }
+
+                nextBtn.addEventListener('click', nextSlide);
+                prevBtn.addEventListener('click', prevSlide);
+                
+                startInterval();
+            }
+            // NEW CODE END: YouTube Carousel JavaScript
 
 
         // Load content on page load
         window.addEventListener('DOMContentLoaded', () => {
             loadBlogPosts();
             setupCarousel(); // Initialize the carousel
+            setupYouTubeCarousel();
+            
         });
 
         // Add scroll animation
@@ -1272,7 +1628,7 @@
 
         // Observe all cards
         window.addEventListener('load', () => {
-            const cards = document.querySelectorAll('.skill-card, .project-card, .blog-card, .achievement-card, .about-card, .carousel-container');
+            const cards = document.querySelectorAll('.skill-card, .project-card, .blog-card, .achievement-card, .about-card, .carousel-container, .youtube-carousel-container');
             cards.forEach((card, index) => {
                 card.style.opacity = '0';
                 card.style.transform = 'translateY(30px)';
